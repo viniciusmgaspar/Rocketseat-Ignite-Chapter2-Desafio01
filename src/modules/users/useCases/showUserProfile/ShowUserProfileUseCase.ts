@@ -1,4 +1,3 @@
-import AppError from "../../../../errors/AppError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -14,7 +13,7 @@ class ShowUserProfileUseCase {
     const user = this.usersRepository.findById(user_id);
 
     if (!user){
-        throw new AppError("user not found", 404)
+        throw new Error("user not found")
     }
     return user
   }

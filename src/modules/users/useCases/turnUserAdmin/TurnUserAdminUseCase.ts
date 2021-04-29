@@ -1,4 +1,3 @@
-import AppError from "../../../../errors/AppError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -13,7 +12,7 @@ class TurnUserAdminUseCase {
     const user = this.usersRepository.findById(user_id);
 
     if(!user){
-        throw new AppError("Id not found")
+        throw new Error("Id not found")
     }
 
     this.usersRepository.turnAdmin(user)

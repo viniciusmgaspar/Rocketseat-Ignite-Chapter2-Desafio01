@@ -1,4 +1,3 @@
-import AppError from "../../../../errors/AppError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -13,10 +12,12 @@ class ListAllUsersUseCase {
   execute({user_id}: IRequest): User[] {
     const user = this.usersRepository.findById(user_id);
     if(!user){
-        throw new AppError("id not found",400)
-    }
-    if (user.admin === false){
-        throw new AppError("user not admin",400)
+        throw new Error("id not found")
+    }          
+       
+    
+    if(user.admin === false){
+        throw new Error("user not admin")
     }
 
     const users = this.usersRepository.list();
